@@ -57,19 +57,24 @@ function isPrime(num){
 }
 
 //generates a prime list from 2 - max using isPrime() function
+//can find primes from 1 - 100,000,000 in ~ 152.24s.
 function primeList(max) {
+  console.time()
   var primelist = []
   for (var i = 2; i <= max; i++) {
     if (isPrime(i)) {
       primelist.push(i);
     }
   }
+  console.timeEnd();
   return primelist;
 }
 
-//new prime list function using Sieve of Eratosthenes algorithm - efficient 
-function findPrime3(max) {
-  var numList = []
+//new prime list function using Sieve of Eratosthenes algorithm - efficient
+//can find primes from 1 - 100,000,000 in ~ 8.39s.
+function primeListNew(max) {
+  console.time();
+  var numList = [];
   for (var i = 0; i <= max; i++) {
     numList.push(true);
   }
@@ -79,7 +84,7 @@ function findPrime3(max) {
   }
   for (var i = 3; i < Math.sqrt(numList.length); i+=2) {
     for (var j = i; i * j < numList.length; j++) {
-      numList[i * j] = false
+      numList[i * j] = false;
     }
   }
   var primeList = []
@@ -88,6 +93,7 @@ function findPrime3(max) {
       primeList.push(i);
     }
   }
+  console.timeEnd();
   return primeList;
 }
 
