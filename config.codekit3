@@ -19,6 +19,16 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"\/css\/min\/main-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/css\/min\/min\/main-min-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,

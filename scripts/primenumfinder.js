@@ -116,7 +116,7 @@ function primeListNew(max) {
 //Optimized the SoE algorithm functio
 //can find primes from 1 - 100,000,000 in < 5s.
 function primeListNew2(max) {
-  console.time();
+  // console.time();
   var numList = [];
   for (var i = 0; i <= max; i++) {
     numList.push(true);
@@ -138,6 +138,6 @@ function primeListNew2(max) {
       primeList.push(i);
     }
   }
-  console.timeEnd();
+  // console.timeEnd();
   return primeList;
 }
