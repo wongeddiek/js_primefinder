@@ -118,22 +118,22 @@ function primeListNew(max) {
 function primeListNew2(max) {
   // console.time();
   var numList = [];
-  for (var i = 0; i <= max; i++) {
+  for (let i = 0; i <= max; i++) {
     numList.push(true);
   }
   //turn all even index to false
-  for (var i = 4; i < numList.length; i+=2) {
+  for (let i = 4; i < numList.length; i+=2) {
     numList[i] = false;
   }
-  for (var i = 3; i < Math.sqrt(numList.length); i+=2) {
+  for (let i = 3; i < Math.sqrt(numList.length); i+=2) {
     if (numList[i] != false) {
-      for (var j = i; i * j < numList.length; j+=2) {
+      for (let j = i; i * j < numList.length; j+=2) {
         numList[i * j] = false;
       }
     }
   }
-  var primeList = []
-  for (var i = 2; i < numList.length; i++) {
+  var primeList = [];
+  for (let i = 2; i < numList.length; i++) {
     if (numList[i]) {
       primeList.push(i);
     }
