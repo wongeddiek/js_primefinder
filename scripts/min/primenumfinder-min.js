@@ -1,9 +1,9 @@
 //first prime finder function - inefficient
 function findPrime1(max) {
   var primelist = []
-  for (var x = 2; x <= max; x++) {
+  for (let x = 2; x <= max; x++) {
     var isprime = x
-    for (var i = 2; i <= isprime; i++) {
+    for (let i = 2; i <= isprime; i++) {
       if (i == isprime) {
         primelist.push(isprime)
       }
@@ -24,12 +24,12 @@ function findPrime1(max) {
 // Prime finder using Sieve of Eratosthenes algorithm - ineffecient method
 function findPrime2(max) {
   var arr = []
-  for (var i = 2; i <= max; i++) {
+  for (let i = 2; i <= max; i++) {
     arr.push(i)
   }
   // console.log("Prime Array: " + arr)
-  for (var i = 0; i < (Math.ceil(Math.sqrt(max))); i++) {
-    for (var j = arr[i];arr[i]*j <= arr[arr.length -1]; j++) {
+  for (let i = 0; i < (Math.ceil(Math.sqrt(max))); i++) {
+    for (let j = arr[i];arr[i]*j <= arr[arr.length -1]; j++) {
       // console.log("we are at number :" + arr[i] )
       // var multval = arr[i]*j
       // console.log("multiple is:" + multval)
@@ -48,7 +48,7 @@ function findPrime2(max) {
 //function determing if an imput number is prime.
 function isPrime(num){
   if (num != 2 && num % 2 === 0) return false;
-  for (var i = 3; i <= Math.sqrt(num); i += 2) {
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
     if(num % i === 0) {
       return false;
     }
@@ -61,7 +61,7 @@ function isPrime(num){
 function primeList(max) {
   console.time()
   var primelist = []
-  for (var i = 2; i <= max; i++) {
+  for (let i = 2; i <= max; i++) {
     if (isPrime(i)) {
       primelist.push(i);
     }
@@ -73,7 +73,7 @@ function primeList(max) {
 //generates a prime list containing n number of primes.
 function nPrimeList(n) {
   var primelist = []
-  for (var i = 2; primelist.length < n; i++) {
+  for (let i = 2; primelist.length < n; i++) {
     if (isPrime(i)) {
       primelist.push(i);
     }
@@ -91,20 +91,20 @@ function findNthPrime(n) {
 function primeListNew(max) {
   console.time();
   var numList = [];
-  for (var i = 0; i <= max; i++) {
+  for (let i = 0; i <= max; i++) {
     numList.push(true);
   }
   //turn all even index to false
-  for (var i = 4; i < numList.length; i+=2) {
+  for (let i = 4; i < numList.length; i+=2) {
     numList[i] = false;
   }
-  for (var i = 3; i < Math.sqrt(numList.length); i+=2) {
-    for (var j = i; i * j < numList.length; j++) {
+  for (let i = 3; i < Math.sqrt(numList.length); i+=2) {
+    for (let j = i; i * j < numList.length; j++) {
       numList[i * j] = false;
     }
   }
   var primeList = []
-  for (var i = 2; i < numList.length; i++) {
+  for (let i = 2; i < numList.length; i++) {
     if (numList[i]) {
       primeList.push(i);
     }
@@ -113,10 +113,10 @@ function primeListNew(max) {
   return primeList;
 }
 
-//Optimized the SoE algorithm functio
+//Optimized the SoE algorithm function
 //can find primes from 1 - 100,000,000 in < 5s.
-function primeListNew2(max) {
-  // console.time();
+function primeListSoE(max) {
+  console.time();
   var numList = [];
   for (let i = 0; i <= max; i++) {
     numList.push(true);
@@ -132,14 +132,50 @@ function primeListNew2(max) {
       }
     }
   }
-  var primeList = [];
-  for (let i = 2; i < numList.length; i++) {
-    if (numList[i]) {
-      primeList.push(i);
+  // var primeList = [];
+  // for (let i = 2; i < numList.length; i++) {
+  //   if (numList[i]) {
+  //     primeList.push(i);
+  //   }
+  // }
+
+  console.timeEnd();
+  // return primeList;
+  while (numList[numList.length - 1] === false) {
+    numList.pop();
+  }
+  return numList.length - 1;
+}
+
+
+//prime finder using iterative Sieve
+
+//first create the primelist object with property = prime, value = the prime's next multiple
+function primeIterative(max) {
+  var primeObj = {2:4};
+  for (let i = 3; i <= max; i+=2) {
+    var pointer = false;
+    // Object.keys(primeObj).forEach(key => {
+    //   if (primeObj[key] === i) {
+    //     primeObj[key] += +key;
+    //     pointer = true;
+    //   }
+    // });
+    for (let j in primeObj) {
+      if (primeObj[j] === i) {
+        primeObj[j] += +j*2;
+        pointer = true;
+      }
+    }
+    if (!pointer) {
+      primeObj[i] = i * i;
     }
   }
-  // console.timeEnd();
-  return primeList;
+  // var primeList = [];
+  // for (let k in primeObj) {
+  //   primeList.push(k);
+  // }
+  return primeObj;
 }
 
 

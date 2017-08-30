@@ -153,7 +153,7 @@ function primeListSoE(max) {
 //first create the primelist object with property = prime, value = the prime's next multiple
 function primeIterative(max) {
   var primeObj = {2:4};
-  for (let i = 2; i <= max; i++) {
+  for (let i = 3; i <= max; i+=2) {
     var pointer = false;
     // Object.keys(primeObj).forEach(key => {
     //   if (primeObj[key] === i) {
@@ -163,17 +163,17 @@ function primeIterative(max) {
     // });
     for (let j in primeObj) {
       if (primeObj[j] === i) {
-        primeObj[j] += +j;
+        primeObj[j] += +j*2;
         pointer = true;
       }
     }
     if (!pointer) {
-      primeObj[i] = i * 2;
+      primeObj[i] = i * i;
     }
   }
-  var primeList = [];
-  for (let k in primeObj) {
-    primeList.push(k);
-  }
-  return primeList;
+  // var primeList = [];
+  // for (let k in primeObj) {
+  //   primeList.push(k);
+  // }
+  return primeObj;
 }
