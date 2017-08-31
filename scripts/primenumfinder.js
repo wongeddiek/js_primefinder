@@ -149,7 +149,7 @@ function primeListSoE(max) {
 
 
 //prime finder using iterative Sieve
-
+//not as effecient as the SoE function
 //first create the primelist object with property = prime, value = the prime's next multiple
 function primeIterative(max) {
   var primeObj = {2:4};
